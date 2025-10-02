@@ -1,5 +1,125 @@
-{% extends "base.html" %}
-{% block content %}
-home page
-<a href="{% url "base:logout" %}">logout</a>
-{% endblock content %}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        transition: 0.3s all ease-in-out;
+    }
+
+    body {
+        background: #f9f9f9;
+        color: #333;
+    }
+
+    /* Top Hero Banner */
+    .hero {
+        background: #103c6e; /* dark blue */
+        color: #fff;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        font-weight: 700;
+    }
+
+    .hero h1 span {
+        color: #ddd;
+        font-weight: 400;
+    }
+
+    .hero .search-bar {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        background: #fff;
+        border-radius: 30px;
+        padding: 10px 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero .search-bar input {
+        border: none;
+        outline: none;
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 30px;
+    }
+
+    .hero .search-bar button {
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        color: #333;
+    }
+
+    .hero p {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #ddd;
+    }
+
+    /* Category Grid */
+    .categories {
+        margin: 40px auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        max-width: 900px;
+        padding: 0 20px;
+    }
+
+    .category-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .category-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-card i {
+        font-size: 22px;
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Skip the Line.<br><span>Join the Fun.</span></h1>
+    <div class="search-bar">
+        <input type="text" placeholder="Search for event">
+        <button>🔍</button>
+    </div>
+    <p>Get tickets to concerts, exhibitions, and entertainment events.<br>
+       All in one place.</p>
+</div>
+
+<!-- Categories -->
+<div class="categories">
+    <div class="category-card">🎵<br>Concerts</div>
+    <div class="category-card">🎉<br>Parties</div>
+    <div class="category-card">🎭<br>Festivals</div>
+    <div class="category-card">🎬<br>Movies</div>
+    <div class="category-card">⚽<br>Sports</div>
+    <div class="category-card">🖼️<br>Exhibitions</div>
+</div>
+

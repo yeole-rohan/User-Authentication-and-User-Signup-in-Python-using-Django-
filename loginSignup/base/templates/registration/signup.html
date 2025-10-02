@@ -1,14 +1,204 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="shadow-wrap">
- <div class="form-wrap">
-  <h3>Signup </h3>
-<form method="POST">
- {% csrf_token %}
- {{form}}
- <button type="submit">Submit</button>
-</form>
-<a class="signup-link" href="{% url "base:login" %}">Login</a>
+{% load static %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background: #000; /* Pure black background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #fff;
+    }
+
+    #Logo {
+    width: 150px;   /* set desired width */
+    height: auto;
+    padding: 10px;
+    margin-top: 60px; 
+    margin-bottom: -20px;  /* keeps aspect ratio */
+    }
+
+
+    .auth-box {
+        background: rgba(255, 255, 255, 0.05); /* Glass effect */
+        padding: 40px 35px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        width: 380px;
+        text-align: center;
+    }
+
+    .logo h1 {
+        font-size: 32px;
+        font-weight: 800;
+        color: #fff;
+    }
+    .logo h1 span {
+        color: #e63946; /* red highlight */
+    }
+
+    .tagline {
+        font-size: 14px;
+        color: #ddd;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 18px;
+    }
+    .form-group label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: block;
+        color: #ccc;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #444;
+        border-radius: 8px;
+        font-size: 15px;
+        background: #111;
+        color: #fff;
+    }
+    .form-group input:focus {
+        outline: none;
+        border-color: #ffcc00;
+        box-shadow: 0 0 6px rgba(255, 204, 0, 0.5);
+    }
+
+    .auth-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #103c6e;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+    .auth-btn:hover {
+        background: #fff;
+        color: #103c6e;
+        border: 1px solid #103c6e;
+    }
+
+    .divider {
+        margin: 20px 0;
+        font-size: 13px;
+        color: #aaa;
+        position: relative;
+    }
+    .divider::before, .divider::after {
+        content: "";
+        position: absolute;
+        width: 40%;
+        height: 1px;
+        background: #444;
+        top: 50%;
+    }
+    .divider::before { left: 0; }
+    .divider::after { right: 0; }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    .social-icons img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+    .social-icons img:hover {
+        transform: scale(1.1);
+    }
+
+    .signup-link {
+        font-size: 14px;
+        margin-top: 15px;
+        color: #ddd;
+    }
+    .signup-link a {
+        color: #e63946;
+        font-weight: 700;
+        text-decoration: none;
+    }
+    .signup-link a:hover {
+        text-decoration: underline;
+    }
+
+    .error {
+    color: #e63946;  /* same red as your logo highlight */
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+</style>
+
+<div class="auth-box">
+  <div class="logo">
+    <img id= "Logo" src="{% static 'QEntry_Logo.png' %}">
+    <h1>Event<span>CIT</span></h1>
+  </div>
+  <p class="tagline">Skip the line, join the fun.</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_username">Email/Username</label>
+      {{ form.username }}
+      <div class="error">
+      {{ form.username.errors }}
+    </div>
+
+    </div>
+    <div class="form-group">
+      <label for="id_password1">Password</label>
+      {{ form.password1 }}
+       <div class="error">
+      {{ form.password1.errors }}
+    </div>
+
+    </div>
+    <div class="form-group">
+      <label for="id_password2">Confirm Password</label>
+      {{ form.password2 }}
+      <div class="error">
+      {{ form.password2.errors }}
+    </div>
+    </div>
+
+    <div class="error">
+    {{ form.non_field_errors }}
+  </div>
+  
+    <button type="submit" class="auth-btn">Sign Up</button>
+  </form>
+
+  <div class="divider">You can Connect with</div>
+  <div class="social-icons">
+    <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+  </div>
+
+  <p class="signup-link">Already have an account? 
+    <a href="{% url 'base:login' %}">Log in here</a>
+  </p>
 </div>
-</div>
-{% endblock content %}a
+
